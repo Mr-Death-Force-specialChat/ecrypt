@@ -41,14 +41,14 @@ namespace ecrypt { namespace encode { namespace hex
 
 	struct iencoder
 	{
-		inline void inrencode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
+		inline void nrencode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
 		{
 			CryptoPP::HexEncoder encoder;
 			encoder.Put(data, data_len);
 			encoder.MessageEnd();
 			result_len = encoder.MaxRetrievable();
 		}
-		inline void inrencode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
+		inline void nrencode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
 		{
 			CryptoPP::HexEncoder encoder;
 			encoder.Put(data, data_len);
@@ -57,14 +57,14 @@ namespace ecrypt { namespace encode { namespace hex
 			encoder.Get(result, result_len);
 		}
 
-		inline size_t iencode_get_size(const unsigned char* data, const size_t& data_len)
+		inline size_t encode_get_size(const unsigned char* data, const size_t& data_len)
 		{
 			CryptoPP::HexEncoder encoder;
 			encoder.Put(data, data_len);
 			encoder.MessageEnd();
 			return encoder.MaxRetrievable();
 		}
-		inline unsigned char* iencode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
+		inline unsigned char* encode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
 		{
 			CryptoPP::HexEncoder encoder;
 			encoder.Put(data, data_len);
@@ -78,7 +78,7 @@ namespace ecrypt { namespace encode { namespace hex
 
 	struct decoder
 	{
-		void nrddeode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
+		void nrdecode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
 		{
 			CryptoPP::HexDecoder decoder;
 			decoder.Put(data, data_len);
@@ -114,14 +114,14 @@ namespace ecrypt { namespace encode { namespace hex
 
 	struct idecoder
 	{
-		inline void inrdecode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
+		inline void nrdecode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
 		{
 			CryptoPP::HexDecoder decoder;
 			decoder.Put(data, data_len);
 			decoder.MessageEnd();
 			result_len = decoder.MaxRetrievable();
 		}
-		inline void inrdecode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
+		inline void nrdecode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
 		{
 			CryptoPP::HexDecoder decoder;
 			decoder.Put(data, data_len);
@@ -130,14 +130,14 @@ namespace ecrypt { namespace encode { namespace hex
 			decoder.Get(result, result_len);
 		}
 
-		inline size_t idecode_get_size(const unsigned char* data, const size_t& data_len)
+		inline size_t decode_get_size(const unsigned char* data, const size_t& data_len)
 		{
 			CryptoPP::HexDecoder decoder;
 			decoder.Put(data, data_len);
 			decoder.MessageEnd();
 			return decoder.MaxRetrievable();
 		}
-		inline unsigned char* idecode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
+		inline unsigned char* decode(const unsigned char* data, const size_t& data_len, unsigned char* result, const size_t& result_len)
 		{
 			CryptoPP::HexDecoder decoder;
 			decoder.Put(data, data_len);
