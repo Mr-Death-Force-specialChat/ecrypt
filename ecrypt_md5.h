@@ -1,4 +1,5 @@
 #include "ecrypt_main.h"
+#ifdef ECRYPT_WEAK
 #define CRYPTOPP_ENABLE_NAMESPACE_WEAK 1
 #include <cryptopp/md5.h>
 
@@ -30,3 +31,6 @@ namespace ecrypt { namespace weak { namespace md5
 		}
 	};
 }}}
+#else
+#error Including weak 'md5' hash function without ECRYPT_WEAK defined.
+#endif
