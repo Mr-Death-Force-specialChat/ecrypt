@@ -78,7 +78,7 @@ namespace ecrypt { namespace encode { namespace base64
 
 	struct decoder
 	{
-		void nrddeode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
+		void nrdeode_get_size(const unsigned char* data, const size_t& data_len, size_t& result_len)
 		{
 			CryptoPP::Base64Decoder decoder;
 			decoder.Put(data, data_len);
