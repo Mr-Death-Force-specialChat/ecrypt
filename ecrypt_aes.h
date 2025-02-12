@@ -12,6 +12,14 @@ namespace ecrypt { namespace symmetric { namespace aes {
 			key.resize(AES_KEY_SIZE);
 			iv.resize(CryptoPP::AES::BLOCKSIZE);
 		}
+
+		static aes_key_t* generate_key(aes_key_t* key)
+		{
+			CryptoPP::BlockingRng rng;
+			rng.GenerateBlock(key->key.data(), key->key.size());
+			rng.GenerateBlock(key->iv.data(), key->iv.size());
+			return key;
+		}
 	};
 	struct encryptor
 	{

@@ -49,12 +49,13 @@ int main(int argc, char** argv)
 	printf("Decrypted data1:\n%s\n", data_decrypted1.c_str());
 	*/
 
+	/*
 	std::string data_to_encrypt = "Logan \"The Goat\" Sargeant";
 	std::string data_encrypted = "";
 	std::string data_decrypted = "";
 	ecrypt::asymmetric::rsa::key_pair_t kp;
 	ecrypt::asymmetric::rsa::encryptor rsa;
-	rsa.generate_keys(&kp);
+	kp.generate_keys(&kp);
 	
 	rsa.encrypt(data_to_encrypt, kp, &data_encrypted);
 	rsa.decrypt(data_encrypted, kp, &data_decrypted);
@@ -68,5 +69,29 @@ int main(int argc, char** argv)
 
 	//printf("SK: %s\nPK: %s\nOV: %s\nEV: %s\nDV: %s\n", base64_sk.c_str(), base64_pk.c_str(), data_to_encrypt.c_str(), base64_ev.c_str(), data_decrypted.c_str());
 	printf("OV: %s\nDV: %s\n", data_to_encrypt.c_str(), data_decrypted.c_str());
+	*/
+
+	std::string m1 = "sender1";
+	std::string m2 = "sender2";
+	std::string s1 = "";
+	std::string s2 = "";
+	ecrypt::asymmetric::rsa::key_pair_t kp1;
+	kp1.generate_keys(&kp1);
+	ecrypt::asymmetric::rsa::key_pair_t kp2;
+	kp2.generate_keys(&kp2);
+	ecrypt::asymmetric::rsa::signer s;
+	printf("Signing messages...\n");
+	s1 = *s.sign(m1, kp1, &s1);
+	s2 = *s.sign(m2, kp2, &s2);
+	printf("Verifying messages...\n");
+	int aaa = s.verify(m1, s1, kp1);
+	int aab = s.verify(m1, s1, kp2);
+	int aba = s.verify(m1, s2, kp1);
+	int abb = s.verify(m1, s2, kp2);
+	int bbb = s.verify(m2, s2, kp2);
+	int bba = s.verify(m2, s2, kp1);
+	int bab = s.verify(m2, s1, kp2);
+	int baa = s.verify(m2, s1, kp1);
+	printf("%d?1 %d?0 %d?0 %d?0\n%d?1 %d?0 %d?0 %d?0\n", aaa, aab, aba, abb, bbb, bba, bab, baa);
 	return 0;
 }
